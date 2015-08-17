@@ -1,37 +1,34 @@
 
-assemblyJarName in assembly := "__.jar"
+// assemblyJarName in assembly := "etl.jar"
+
+// enablePlugins(DockerPlugin)
 
 // mainClass in assembly := Some("com.__.Main")
 
-name := "__"
+name := "etl-pipeline"
 
-organization := "com.dougybarbo"
+organization := "org.dougybarbo"
 
 version := "0.1"
 
-crossScalaVersions := Seq("2.10.4", "2.11.7")
+// crossScalaVersions := Seq("2.10.4", "2.11.7")
 
-scalaHome := Some(file("/usr/local/bin/scala"))
-
-sourceDirectory := new File(baseDirectory.value, "src")
-
-unmanagedBase := baseDirectory.value / "lib"
+scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
-	"org.scalatest" 		%%		"scalatest" 			%	"3.0.0-SNAP5"	 	% "test",
-	"org.scalaz"			%%		"scalaz-core"			%	"7.2.0-M2",
-	"org.scalanlp"			%%		"breeze"				%	"0.11.2",
-	"com.quantifind"		%% 		"wisp"					%	"0.0.4",
-	"org.scalikejdbc"		%% 		"scalikejdbc"			%	"2.2.7",
-	"com.h2database"		%			"h2"					%	"1.4.187",
-	"ch.qos.logback"		% 			"logback-classic"		%	"1.1.3",
-	"org.apache.hadoop"	%			"hadoop-client"			%	"2.7.1"
+	"org.scalatest" 		%%		"scalatest" 			%		"3.0.0-SNAP5"	 	% "test",
+	"com.lihaoyi"			%%		"utest"					% 		"0.3.1"
+	"org.scalaz"			%%		"scalaz-core"			%		"7.2.0-M2",
+	"org.scalanlp"			%%		"breeze"				%		"0.11.2",
+	"com.quantifind"		%% 		"wisp"					%		"0.0.4"
 )
 
 resolvers ++= Seq(
 	"Akka Repository"         			at "http://repo.akka.io/releases/",
 	"Sonatype OSS Snapshots"  		at "http://oss.sonatype.org/content/repositories/snapshots/"
 )
+
+testFrameworks += new TestFramework("utest.runner.Framework")
 
 // resolvers += Resolver.file("my-test-repo", file("test")) transactional()
 
